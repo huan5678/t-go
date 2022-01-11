@@ -6,13 +6,22 @@ import Card from "./Card";
 
 const ContentList = (props) => {
   const { setTargetItem } = useTravelContext();
+
+  const handleClick = (item) => {
+    setTargetItem(item);
+  };
+
   return (
     <section className="container">
       <h2 className="text-center text-gray text-2xl mb-8">{props.title}</h2>
       <ul className="flex justify-between flex-wrap gap-8">
         {props.data.map((item, index) => {
           return (
-            <li className="flex-[1_1_25%] -mx-4 -my-4 px-4 py-4" key={index}>
+            <li
+              className="flex-[1_1_25%] -mx-4 -my-4 px-4 py-4"
+              key={index}
+              onClick={handleClick(item)}
+            >
               <Link to={`/detail/${item.ScenicSpotID}`}>
                 <Card
                   key={
