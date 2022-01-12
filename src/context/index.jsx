@@ -38,6 +38,7 @@ export const TravelContextProvider = ({ children }) => {
   const [hotelRandom, setHotelRandom] = useState([]);
   const [activityRandom, setActivityRandom] = useState([]);
   const [targetItem, setTargetItem] = useState(null);
+  const [targetClass, setTargetClass] = useState(null);
 
   useEffect(() => {
     fetchData("ScenicSpot")
@@ -111,7 +112,10 @@ export const TravelContextProvider = ({ children }) => {
         activityData,
         activityRandom,
         bannerImg,
+        targetItem,
         setTargetItem,
+        targetClass,
+        setTargetClass,
       }}
     >
       {children}

@@ -34,7 +34,7 @@ function Index() {
           >
             {bannerImg.map((item, index) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <img
                     className="h-screen w-full object-cover"
                     src={item.urls.raw}
