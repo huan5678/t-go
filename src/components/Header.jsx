@@ -10,8 +10,10 @@ import {
   LoginIcon,
   ScenicIcon,
 } from "../components/Icon";
+import { useTravelContext } from "../context";
 
 const Header = () => {
+  const { targetIndex } = useTravelContext();
   const [headerHeight, setHeaderHeight] = useState("0%");
   const [lastScroll, setLastScroll] = useState(0);
   const [currentScroll, setCurrentScroll] = useState(0);
@@ -21,30 +23,32 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", function () {
-      setCurrentScroll(window.pageYOffset);
+    targetIndex === "Index"
+      ? window.addEventListener("scroll", function () {
+          setCurrentScroll(window.pageYOffset);
 
-      if (currentScroll <= 0) {
-        setHeaderHeight("0%");
-        return;
-      }
+          if (currentScroll <= 0) {
+            setHeaderHeight("0%");
+            return;
+          }
 
-      // 當前捲軸位置大於上一次捲軸位置 且 header目前顯示
-      if (currentScroll > lastScroll && headerHeight === "0%") {
-        setHeaderHeight("-100%");
-      }
-      // 當前捲軸位置小於上一次捲軸位置 且 header已經收起來
-      else if (currentScroll < lastScroll && headerHeight === "-100%") {
-        setHeaderHeight("0%");
-      }
-      // 更新上一次捲軸位置
-      setLastScroll(currentScroll);
+          // 當前捲軸位置大於上一次捲軸位置 且 header目前顯示
+          if (currentScroll > lastScroll && headerHeight === "0%") {
+            setHeaderHeight("-100%");
+          }
+          // 當前捲軸位置小於上一次捲軸位置 且 header已經收起來
+          else if (currentScroll < lastScroll && headerHeight === "-100%") {
+            setHeaderHeight("0%");
+          }
+          // 更新上一次捲軸位置
+          setLastScroll(currentScroll);
 
-      // console.log("currentScroll", currentScroll);
-      // console.log("lastScroll", lastScroll);
-      // console.log(headerHeight);
-      // console.log(headerStyle);
-    });
+          // console.log("currentScroll", currentScroll);
+          // console.log("lastScroll", lastScroll);
+          // console.log(headerHeight);
+          // console.log(headerStyle);
+        })
+      : setHeaderHeight("0%");
   }, [currentScroll]);
 
   const navList = [

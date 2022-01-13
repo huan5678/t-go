@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import unloadImage from "../images/unloadImage.svg";
 
 const Card = ({ title, image }) => {
+  const [imageUrl, setImageUrl] = useState(image);
+
+  const handleImageNotLoad = () => {
+    setImageUrl(unloadImage);
+  };
   return (
     <div
       className={`
@@ -12,7 +18,8 @@ const Card = ({ title, image }) => {
     >
       <img
         className="mix-blend-overlay absolute inset-0 w-full h-full object-cover transition-all duration-800 group-hover:scale-110"
-        src={image}
+        src={imageUrl}
+        onError={handleImageNotLoad}
         alt="card"
       />
       <div className="pl-2 pb-6 h-full flex items-end">

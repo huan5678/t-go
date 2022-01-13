@@ -5,13 +5,14 @@ import { useTravelContext } from "../context";
 import Card from "./Card";
 
 const ContentList = (props) => {
-  const { setTargetItem, setTargetClass } = useTravelContext();
+  const { setTargetItem, setTargetClass, setTargetIndex } = useTravelContext();
 
   console.log(props);
 
   const handleClick = (item, type) => {
     setTargetItem(item);
     setTargetClass(type);
+    setTargetIndex("Detail");
   };
 
   return (
