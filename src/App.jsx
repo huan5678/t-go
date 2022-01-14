@@ -23,7 +23,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/" index element={<Index />} />
         <Route path="/scenic" element={<ScenicSpot />} />
         <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/hotel" element={<Hotel />} />

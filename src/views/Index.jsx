@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchIcon } from "../components/Icon";
 import { useTravelContext } from "../context";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,14 +17,7 @@ function Index() {
     hotelRandom,
     activityRandom,
     bannerImg,
-    setTargetIndex,
   } = useTravelContext();
-
-  const handleSetTarget = () => setTargetIndex("Index");
-
-  useMemo(() => {
-    handleSetTarget();
-  }, []);
 
   return (
     <main>

@@ -39,7 +39,6 @@ export const TravelContextProvider = ({ children }) => {
   const [activityRandom, setActivityRandom] = useState([]);
   const [targetItem, setTargetItem] = useState(null);
   const [targetClass, setTargetClass] = useState(null);
-  const [targetIndex, setTargetIndex] = useState("Index");
 
   useEffect(() => {
     fetchData("ScenicSpot")
@@ -117,8 +116,6 @@ export const TravelContextProvider = ({ children }) => {
         setTargetItem,
         targetClass,
         setTargetClass,
-        targetIndex,
-        setTargetIndex,
       }}
     >
       {children}

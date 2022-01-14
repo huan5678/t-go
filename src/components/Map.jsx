@@ -22,7 +22,7 @@ const Map = () => {
         targetItem.Position.PositionLon,
       ]}
       style={mapSet}
-      zoom={24}
+      zoom={16}
     >
       {/* mapbox://styles/huan5678/ckyb5tzl51wzh15lalewekqrn */}
       {/* /styles/v1/{username}/{style_id}/tiles/{tilesize}/{z}/{x}/{y}{@2x} */}

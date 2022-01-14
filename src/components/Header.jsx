@@ -10,10 +10,8 @@ import {
   LoginIcon,
   ScenicIcon,
 } from "../components/Icon";
-import { useTravelContext } from "../context";
 
 const Header = () => {
-  const { targetIndex } = useTravelContext();
   const [headerHeight, setHeaderHeight] = useState("0%");
   const [lastScroll, setLastScroll] = useState(0);
   const [currentScroll, setCurrentScroll] = useState(0);
@@ -23,32 +21,30 @@ const Header = () => {
   };
 
   useEffect(() => {
-    targetIndex === "Index"
-      ? window.addEventListener("scroll", function () {
-          setCurrentScroll(window.pageYOffset);
+    window.addEventListener("scroll", function () {
+      setCurrentScroll(window.pageYOffset);
 
-          if (currentScroll <= 0) {
-            setHeaderHeight("0%");
-            return;
-          }
+      if (currentScroll <= 0) {
+        setHeaderHeight("0%");
+        return;
+      }
 
-          // 當前捲軸位置大於上一次捲軸位置 且 header目前顯示
-          if (currentScroll > lastScroll && headerHeight === "0%") {
-            setHeaderHeight("-100%");
-          }
-          // 當前捲軸位置小於上一次捲軸位置 且 header已經收起來
-          else if (currentScroll < lastScroll && headerHeight === "-100%") {
-            setHeaderHeight("0%");
-          }
-          // 更新上一次捲軸位置
-          setLastScroll(currentScroll);
+      // 當前捲軸位置大於上一次捲軸位置 且 header目前顯示
+      if (currentScroll > lastScroll && headerHeight === "0%") {
+        setHeaderHeight("-100%");
+      }
+      // 當前捲軸位置小於上一次捲軸位置 且 header已經收起來
+      else if (currentScroll < lastScroll && headerHeight === "-100%") {
+        setHeaderHeight("0%");
+      }
+      // 更新上一次捲軸位置
+      setLastScroll(currentScroll);
 
-          // console.log("currentScroll", currentScroll);
-          // console.log("lastScroll", lastScroll);
-          // console.log(headerHeight);
-          // console.log(headerStyle);
-        })
-      : setHeaderHeight("0%");
+      // console.log("currentScroll", currentScroll);
+      // console.log("lastScroll", lastScroll);
+      // console.log(headerHeight);
+      // console.log(headerStyle);
+    });
   }, [currentScroll]);
 
   const navList = [
@@ -105,7 +101,7 @@ const Header = () => {
 
   return (
     <div
-      className="bg-white bg-opacity-80 backdrop-blur-sm fixed top-0 z-20 transition-all duration-300 w-full"
+      className="bg-white bg-opacity-80 backdrop-blur-sm fixed top-0 z-20 transition-all duration-300 w-full shadow-sm"
       style={headerStyle}
     >
       <header className="container">
