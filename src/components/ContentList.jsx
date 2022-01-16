@@ -23,19 +23,7 @@ const ContentList = (props) => {
               key={index}
               onClick={() => handleClick(item, props.title)}
             >
-              <Link
-                to={`/detail/${
-                  props.title === "推薦景點"
-                    ? item.ScenicSpotID
-                    : props.title === "推薦餐廳"
-                    ? item.RestaurantID
-                    : props.title === "推薦住宿"
-                    ? item.HotelID
-                    : props.title === "推薦活動"
-                    ? item.ActivityID
-                    : null
-                }`}
-              >
+              <Link to={`/detail`}>
                 <Card
                   key={
                     props.title === "推薦景點"

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../images/logo.svg";
 import {
   HomeIcon,
@@ -15,35 +15,35 @@ const Header = () => {
     {
       to: "/",
       icon: (
-        <HomeIcon className="w-5 h-5 fill-primary transition-all duration-200 group-hover:fill-white " />
+        <HomeIcon className="w-5 h-5 transition-all duration-200 group-hover:fill-white " />
       ),
       text: "首頁",
     },
     {
       to: "/scenic",
       icon: (
-        <ScenicIcon className="w-5 h-5 fill-primary transition-all duration-200 group-hover:fill-white " />
+        <ScenicIcon className="w-5 h-5 transition-all duration-200 group-hover:fill-white " />
       ),
       text: "景點",
     },
     {
       to: "/restaurant",
       icon: (
-        <RestaurantIcon className="w-5 h-5 fill-primary transition-all duration-200 group-hover:fill-white " />
+        <RestaurantIcon className="w-5 h-5 transition-all duration-200 group-hover:fill-white " />
       ),
       text: "餐飲",
     },
     {
       to: "/hotel",
       icon: (
-        <HotelIcon className="w-5 h-5 fill-primary transition-all duration-200 group-hover:fill-white " />
+        <HotelIcon className="w-5 h-5 transition-all duration-200 group-hover:fill-white " />
       ),
       text: "旅宿",
     },
     {
       to: "/activity",
       icon: (
-        <ActivityIcon className="w-5 h-5 fill-primary transition-all duration-200 group-hover:fill-white " />
+        <ActivityIcon className="w-5 h-5 transition-all duration-200 group-hover:fill-white " />
       ),
       text: "活動",
     },
@@ -80,13 +80,17 @@ const Header = () => {
     };
     return (
       <li className="group transition-all duration-500 ease-in-out hover:bg-secondary">
-        <Link
+        <NavLink
           to={to}
-          className="flex gap-2 text-primary transition duration-200 group-hover:text-white py-6 px-4"
+          className={({ isActive }) =>
+            isActive
+              ? "border-secondary border-b-2 fill-secondary text-secondary group-hover:text-white flex gap-2 transition duration-200 py-6 px-4"
+              : "flex gap-2 fill-primary text-primary transition duration-200 group-hover:text-white py-6 px-4"
+          }
           onClick={clearSearchResult}
         >
           {children}
-        </Link>
+        </NavLink>
       </li>
     );
   }
