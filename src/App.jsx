@@ -1,4 +1,4 @@
-import { useTravelContext } from "./context";
+// import { useTravelContext } from "./context";
 import { Routes, Route } from "react-router-dom";
 import Index from "./views/Index";
 import Footer from "./components/Footer";
@@ -7,14 +7,14 @@ import PageComponent from "./views/PageComponent";
 import Detail from "./views/Detail";
 
 function App() {
-  const { scenicSpotData, restaurantData, hotelData, activityData, bannerImg } =
-    useTravelContext();
+  // const { scenicSpotData, restaurantData, hotelData, activityData, bannerImg } =
+  //   useTravelContext();
 
-  console.log("景點", scenicSpotData);
-  console.log("餐廳", restaurantData);
-  console.log("住宿", hotelData);
-  console.log("活動", activityData);
-  console.log("banner", bannerImg);
+  // console.log("景點", scenicSpotData);
+  // console.log("餐廳", restaurantData);
+  // console.log("住宿", hotelData);
+  // console.log("活動", activityData);
+  // console.log("banner", bannerImg);
 
   return (
     <>

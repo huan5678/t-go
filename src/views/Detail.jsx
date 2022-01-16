@@ -26,8 +26,6 @@ const Detail = () => {
         navigation("/");
       }, 3000);
     }
-    console.log(targetItem);
-    console.log(targetPicList);
   }, [targetPicList]);
 
   return (

@@ -7,8 +7,6 @@ import Card from "./Card";
 const ContentList = (props) => {
   const { setTargetItem, setTargetClass } = useTravelContext();
 
-  console.log(props);
-
   const handleClick = (item, type) => {
     setTargetItem(item);
     setTargetClass(type);

@@ -1,11 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useReducer,
-  useContext,
-  useCallback,
-  createContext,
-} from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 import fetchData from "../api";
 import { createApi } from "unsplash-js";
 
@@ -47,7 +40,6 @@ export const TravelContextProvider = ({ children }) => {
   useEffect(() => {
     fetchData("ScenicSpot")
       .then((res) => {
-        console.log(res.data);
         let scenicSpot = [];
         scenicSpot = res.data.filter(
           (item) => item.Picture.PictureUrl1 !== undefined
@@ -59,7 +51,6 @@ export const TravelContextProvider = ({ children }) => {
       .catch((err) => console.error(err));
     fetchData("Restaurant")
       .then((res) => {
-        console.log(res.data);
         let restaurant = [];
         restaurant = res.data.filter(
           (item) => item.Picture.PictureUrl1 !== undefined
@@ -71,7 +62,6 @@ export const TravelContextProvider = ({ children }) => {
       .catch((err) => console.error(err));
     fetchData("Hotel")
       .then((res) => {
-        console.log(res.data);
         let hotel = [];
         hotel = res.data.filter(
           (item) => item.Picture.PictureUrl1 !== undefined
@@ -83,7 +73,6 @@ export const TravelContextProvider = ({ children }) => {
       .catch((err) => console.error(err));
     fetchData("Activity")
       .then((res) => {
-        console.log(res.data);
         let activity = [];
         activity = res.data.filter(
           (item) => item.Picture.PictureUrl1 !== undefined

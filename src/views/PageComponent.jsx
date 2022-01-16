@@ -24,13 +24,11 @@ function PageComponent({ title }) {
       title,
       keyword,
     };
-    console.log(data);
     setSearchTarget(data);
     searchKeyword.value = "";
   };
 
   useEffect(() => {
-    console.log(searchResult);
     if (searchResult.length > 0) {
       const searchResultPerPage = 12;
       const pageVisited = pageNumber * searchResultPerPage;
