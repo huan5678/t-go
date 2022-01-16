@@ -11,9 +11,9 @@ const Card = ({ title, image }) => {
     <div
       className={`
       group relative w-full h-full overflow-hidden shadow border-8 border-white
-      p-4 max-h-80 aspect-[3/4] bg-cover bg-center bg-gradient-to-b from-gray to-gray-900
+      p-4 max-h-80 aspect-[3/4] bg-cover bg-center bg-gradient-to-b from-gray via-transparent to-gray-dark
       transition-all duration-300
-      hover:shadow-lg hover:shadow-primary-300
+      hover:shadow-lg hover:shadow-secondary-300
       `}
     >
       <img
@@ -26,7 +26,7 @@ const Card = ({ title, image }) => {
         <h3
           className={`
           text-white text-sm transition duration-300 ease-in
-          group-hover:text-primary-200
+          group-hover:text-secondary-100
           `}
         >
           {title}

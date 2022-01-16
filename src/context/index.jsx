@@ -3,6 +3,7 @@ import {
   useEffect,
   useReducer,
   useContext,
+  useCallback,
   createContext,
 } from "react";
 import fetchData from "../api";
@@ -39,6 +40,9 @@ export const TravelContextProvider = ({ children }) => {
   const [activityRandom, setActivityRandom] = useState([]);
   const [targetItem, setTargetItem] = useState(null);
   const [targetClass, setTargetClass] = useState(null);
+  const [targetPicList, setTargetPicList] = useState([]);
+  const [searchTarget, setSearchTarget] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     fetchData("ScenicSpot")
@@ -100,6 +104,128 @@ export const TravelContextProvider = ({ children }) => {
       });
   }, []);
 
+  useEffect(() => {
+    if (targetItem !== null) {
+      let picArr = [];
+      let urlTest =
+        /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+      picArr = Object.entries(targetItem.Picture).map(
+        ([description, url], index) => {
+          if (urlTest.test(url)) return { description, url };
+        }
+      );
+      picArr = picArr.filter((item) => item !== undefined);
+      setTargetPicList(picArr);
+    }
+  }, [targetItem]);
+
+  const [cityList] = useState([
+    {
+      zh_Tw: "南投縣",
+      en_Us: "NantouCounty",
+    },
+    {
+      zh_Tw: "屏東縣",
+      en_Us: "PingtungCounty",
+    },
+    {
+      zh_Tw: "嘉義縣",
+      en_Us: "ChiayiCounty",
+    },
+    {
+      zh_Tw: "苗栗縣",
+      en_Us: "MiaoliCounty",
+    },
+    {
+      zh_Tw: "雲林縣",
+      en_Us: "YunlinCounty",
+    },
+    {
+      zh_Tw: "桃園市",
+      en_Us: "Taoyuan",
+    },
+    { zh_Tw: "臺東縣", en_Us: "TaitungCounty" },
+    { zh_Tw: "臺北市", en_Us: "Taipei" },
+    { zh_Tw: "澎湖縣", en_Us: "PenghuCounty" },
+    { zh_Tw: "宜蘭縣", en_Us: "YilanCounty" },
+    { zh_Tw: "嘉義市", en_Us: "Chiayi" },
+    { zh_Tw: "新竹市", en_Us: "Hsinchu" },
+    { zh_Tw: "連江縣", en_Us: "LienchiangCounty" },
+    { zh_Tw: "彰化縣", en_Us: "ChanghuaCounty" },
+    { zh_Tw: "新北市", en_Us: "NewTaipei" },
+    { zh_Tw: "花蓮縣", en_Us: "HualienCounty" },
+    { zh_Tw: "新竹縣", en_Us: "HsinchuCounty" },
+    { zh_Tw: "高雄市", en_Us: "Kaohsiung" },
+    { zh_Tw: "基隆市", en_Us: "Keelung" },
+    { zh_Tw: "臺南市", en_Us: "Tainan" },
+    { zh_Tw: "金門縣", en_Us: "KinmenCounty" },
+    { zh_Tw: "臺中市", en_Us: "Taichung" },
+  ]);
+
+  useEffect(() => {
+    if (searchTarget !== null) {
+      let title = searchTarget.title;
+      let city = searchTarget.city;
+      let keyword = searchTarget.keyword;
+      let result = [];
+      switch (title) {
+        case "景點": {
+          scenicSpotData.filter((item) => {
+            city === "all"
+              ? item.ScenicSpotName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                result.push(item)
+              : item.ScenicSpotName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                item.City === city &&
+                result.push(item);
+          });
+          break;
+        }
+        case "餐飲": {
+          restaurantData.filter((item) => {
+            city === "all"
+              ? item.RestaurantName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                result.push(item)
+              : item.RestaurantName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                item.City === city &&
+                result.push(item);
+          });
+          break;
+        }
+        case "旅宿": {
+          hotelData.filter((item) => {
+            city === "all"
+              ? item.HotelName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                result.push(item)
+              : item.HotelName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                item.City === city &&
+                result.push(item);
+          });
+          break;
+        }
+        case "活動": {
+          activityData.filter((item) => {
+            city === "all"
+              ? item.ActivityName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                result.push(item)
+              : item.ActivityName.match(keyword) &&
+                item.Picture.PictureUrl1 !== undefined &&
+                item.City === city &&
+                result.push(item);
+          });
+          break;
+        }
+      }
+      setSearchResult(result);
+    }
+  }, [searchTarget]);
+
   return (
     <travelContext.Provider
       value={{
@@ -116,6 +242,11 @@ export const TravelContextProvider = ({ children }) => {
         setTargetItem,
         targetClass,
         setTargetClass,
+        targetPicList,
+        cityList,
+        searchTarget,
+        setSearchTarget,
+        searchResult,
       }}
     >
       {children}

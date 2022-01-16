@@ -4,10 +4,8 @@ import { useTravelContext } from "../context";
 
 import Card from "./Card";
 
-const ContentList = (props) => {
+const SearchContentList = (props) => {
   const { setTargetItem, setTargetClass } = useTravelContext();
-
-  console.log(props);
 
   const handleClick = (item, type) => {
     setTargetItem(item);
@@ -16,7 +14,7 @@ const ContentList = (props) => {
 
   return (
     <section className="container">
-      <h2 className="text-center text-gray text-2xl mb-8">{props.title}</h2>
+      <h2 className="text-center text-gray text-2xl mb-8">{props.header}</h2>
       <ul className="flex justify-between flex-wrap gap-8">
         {props.data.map((item, index) => {
           return (
@@ -27,38 +25,38 @@ const ContentList = (props) => {
             >
               <Link
                 to={`/detail/${
-                  props.title === "推薦景點"
+                  props.title === "景點"
                     ? item.ScenicSpotID
-                    : props.title === "推薦餐廳"
+                    : props.title === "餐飲"
                     ? item.RestaurantID
-                    : props.title === "推薦住宿"
+                    : props.title === "旅宿"
                     ? item.HotelID
-                    : props.title === "推薦活動"
+                    : props.title === "活動"
                     ? item.ActivityID
                     : null
                 }`}
               >
                 <Card
                   key={
-                    props.title === "推薦景點"
+                    props.title === "景點"
                       ? item.ScenicSpotID
-                      : props.title === "推薦餐廳"
+                      : props.title === "餐飲"
                       ? item.RestaurantID
-                      : props.title === "推薦住宿"
+                      : props.title === "旅宿"
                       ? item.HotelID
-                      : props.title === "推薦活動"
+                      : props.title === "活動"
                       ? item.ActivityID
                       : null
                   }
                   image={item.Picture.PictureUrl1}
                   title={
-                    props.title === "推薦景點"
+                    props.title === "景點"
                       ? item.ScenicSpotName
-                      : props.title === "推薦餐廳"
+                      : props.title === "餐飲"
                       ? item.RestaurantName
-                      : props.title === "推薦住宿"
+                      : props.title === "旅宿"
                       ? item.HotelName
-                      : props.title === "推薦活動"
+                      : props.title === "活動"
                       ? item.ActivityName
                       : null
                   }
@@ -72,4 +70,4 @@ const ContentList = (props) => {
   );
 };
 
-export default ContentList;
+export default SearchContentList;

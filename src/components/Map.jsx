@@ -9,7 +9,7 @@ import { PinIcon } from "./Icon";
 
 const mapSet = {
   height: "50vh",
-  width: "50vw",
+  width: "80vw",
 };
 
 const Map = () => {
