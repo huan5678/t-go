@@ -24,7 +24,7 @@ const Detail = () => {
     if (targetItem === null) {
       setTimeout(() => {
         navigation("/");
-      }, 3000);
+      }, 1000);
     }
   }, [targetItem]);
 
