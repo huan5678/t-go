@@ -34,18 +34,16 @@ function Index() {
               );
             })}
           </Swiper>
-          <div className="container absolute z-10 flex flex-col items-center justify-center w-full px-4 -translate-x-1/2 bg-gray-100 bg-opacity-75 md:px-0 lg:px-12 backdrop-blur md:top-1/4 lg:left-1/4 lg:w-1/2 h-96 rounded-xl md:flex-row">
+          <div className="container absolute z-10 flex flex-col items-center justify-center w-full px-12 -translate-x-1/2 bg-gray-100 bg-opacity-75 backdrop-blur top-1/4 left-1/2 h-96 rounded-xl md:flex-row">
             <div className="mb-8 md:mb-0">
-              <h1 className="mb-4 text-2xl font-normal leading-normal text-center md:text-4xl lg:text-5xl text-gray-dark md:text-left md:mb-5">
+              <h1 className="mb-4 text-3xl font-normal leading-normal text-center md:text-5xl text-gray-dark md:text-left md:mb-5">
                 探索
                 <span className="border-b-2 border-warning text-gay-dark">台灣上水</span>
-                <span className="block text-lg md:text-2xl lg:text-3xl md:pt-6">
-                  讓我們發現比人更美的風景
-                </span>
+                <span className="block text-2xl md:pt-6">讓我們發現比人更美的風景</span>
               </h1>
               <p className="flex items-center justify-center text-gray md:justify-start">
-                <span className="inline-block text-xs md:text-base">台灣旅遊導覽</span>
-                <span className="inline-block pl-1 font-serif font-bold text-xxs md:text-lg">
+                <span className="inline-block text-sm md:text-xl">台灣旅遊導覽</span>
+                <span className="inline-block pl-1 font-serif text-xs font-bold md:text-lg">
                   Taiwan Travel Guide
                 </span>
               </p>

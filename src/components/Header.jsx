@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import {HomeIcon, RestaurantIcon, HotelIcon, ActivityIcon, ScenicIcon} from '../components/Icon';
 import {useTravelContext} from '../context';
 
 const Header = () => {
-  const navList = [
+  const navList = useMemo(()=>[
     {
       to: '/',
       icon: <HomeIcon className="w-5 h-5 transition-all duration-200 group-hover:fill-white " />,
@@ -35,7 +35,7 @@ const Header = () => {
       ),
       text: '活動',
     },
-  ];
+  ],[]);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -50,7 +50,7 @@ const Header = () => {
   };
 
 return (
-  <div className="fixed top-0 z-20 w-full transition-all duration-300 bg-white shadow-sm bg-opacity-90 backdrop-blur-sm">
+  <div className="fixed top-0 z-20 hidden w-full transition-all duration-300 bg-white shadow-sm md:block bg-opacity-90 backdrop-blur-sm">
     <header className="container">
       <nav className="flex items-center justify-between">
         <Link to="/">
@@ -67,14 +67,14 @@ return (
             </LinkItem>
           ))}
         </ul>
-        <div className="flex items-center">
+        <div className="flex items-center md:hidden">
           <button
-            className="p-2 ml-4 rounded-md md:hidden bg-gray-light hover:bg-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray"
+            className="p-2 ml-4 rounded-md md:hidden bg-gray-light hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray"
             onClick={handleMenuToggle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 text-gray-dark"
+              className="w-6 h-6 text-gray-dark hover:text-gray-light"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
