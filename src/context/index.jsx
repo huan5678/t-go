@@ -8,52 +8,6 @@ const unsplash = createApi({
   accessKey: import.meta.env.VITE_UNSPLASH_ACCESS_KEY,
 });
 
-const cityList = useMemo(
-  () => [
-    {
-      zh_Tw: '南投縣',
-      en_Us: 'NantouCounty',
-    },
-    {
-      zh_Tw: '屏東縣',
-      en_Us: 'PingtungCounty',
-    },
-    {
-      zh_Tw: '嘉義縣',
-      en_Us: 'ChiayiCounty',
-    },
-    {
-      zh_Tw: '苗栗縣',
-      en_Us: 'MiaoliCounty',
-    },
-    {
-      zh_Tw: '雲林縣',
-      en_Us: 'YunlinCounty',
-    },
-    {
-      zh_Tw: '桃園市',
-      en_Us: 'Taoyuan',
-    },
-    {zh_Tw: '臺東縣', en_Us: 'TaitungCounty'},
-    {zh_Tw: '臺北市', en_Us: 'Taipei'},
-    {zh_Tw: '澎湖縣', en_Us: 'PenghuCounty'},
-    {zh_Tw: '宜蘭縣', en_Us: 'YilanCounty'},
-    {zh_Tw: '嘉義市', en_Us: 'Chiayi'},
-    {zh_Tw: '新竹市', en_Us: 'Hsinchu'},
-    {zh_Tw: '連江縣', en_Us: 'LienchiangCounty'},
-    {zh_Tw: '彰化縣', en_Us: 'ChanghuaCounty'},
-    {zh_Tw: '新北市', en_Us: 'NewTaipei'},
-    {zh_Tw: '花蓮縣', en_Us: 'HualienCounty'},
-    {zh_Tw: '新竹縣', en_Us: 'HsinchuCounty'},
-    {zh_Tw: '高雄市', en_Us: 'Kaohsiung'},
-    {zh_Tw: '基隆市', en_Us: 'Keelung'},
-    {zh_Tw: '臺南市', en_Us: 'Tainan'},
-    {zh_Tw: '金門縣', en_Us: 'KinmenCounty'},
-    {zh_Tw: '臺中市', en_Us: 'Taichung'},
-  ],
-  []
-);
-
   const getRandomArray = (arr, num) => {
     let result = [];
     let index = 0;
@@ -120,7 +74,52 @@ export const TravelContextProvider = ({children}) => {
   const [targetPicList, setTargetPicList] = useState([]);
   const [searchTarget, setSearchTarget] = useState(null);
   const [searchResult, setSearchResult] = useState([]);
-
+  const cityList = useMemo(
+    () => [
+      {
+        zh_Tw: '南投縣',
+        en_Us: 'NantouCounty',
+      },
+      {
+        zh_Tw: '屏東縣',
+        en_Us: 'PingtungCounty',
+      },
+      {
+        zh_Tw: '嘉義縣',
+        en_Us: 'ChiayiCounty',
+      },
+      {
+        zh_Tw: '苗栗縣',
+        en_Us: 'MiaoliCounty',
+      },
+      {
+        zh_Tw: '雲林縣',
+        en_Us: 'YunlinCounty',
+      },
+      {
+        zh_Tw: '桃園市',
+        en_Us: 'Taoyuan',
+      },
+      {zh_Tw: '臺東縣', en_Us: 'TaitungCounty'},
+      {zh_Tw: '臺北市', en_Us: 'Taipei'},
+      {zh_Tw: '澎湖縣', en_Us: 'PenghuCounty'},
+      {zh_Tw: '宜蘭縣', en_Us: 'YilanCounty'},
+      {zh_Tw: '嘉義市', en_Us: 'Chiayi'},
+      {zh_Tw: '新竹市', en_Us: 'Hsinchu'},
+      {zh_Tw: '連江縣', en_Us: 'LienchiangCounty'},
+      {zh_Tw: '彰化縣', en_Us: 'ChanghuaCounty'},
+      {zh_Tw: '新北市', en_Us: 'NewTaipei'},
+      {zh_Tw: '花蓮縣', en_Us: 'HualienCounty'},
+      {zh_Tw: '新竹縣', en_Us: 'HsinchuCounty'},
+      {zh_Tw: '高雄市', en_Us: 'Kaohsiung'},
+      {zh_Tw: '基隆市', en_Us: 'Keelung'},
+      {zh_Tw: '臺南市', en_Us: 'Tainan'},
+      {zh_Tw: '金門縣', en_Us: 'KinmenCounty'},
+      {zh_Tw: '臺中市', en_Us: 'Taichung'},
+    ],
+    []
+  );
+  
   useEffect(() => {
     const fetchDataFunc = async () => {
       const [scenicSpotRes, restaurantRes, hotelRes, activityRes] = await Promise.all([
