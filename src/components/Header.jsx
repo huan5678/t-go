@@ -127,7 +127,7 @@ return (
           className={({isActive}) =>
             isActive
               ? 'border-secondary border-b-2 fill-secondary text-secondary group-hover:text-white flex gap-2 transition duration-200 py-6 px-4'
-              : 'flex gap-2 fill-primary text-primary transition duration-200 group-hover:text-white py-6 px-4'
+              : 'w-full md:w-auto flex gap-2 fill-primary text-primary transition duration-200 group-hover:text-white py-6 px-4'
           }
           onClick={clearSearchResult}
         >
