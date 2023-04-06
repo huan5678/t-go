@@ -54,6 +54,57 @@ const cityList = useMemo(
   []
 );
 
+  const getRandomArray = (arr, num) => {
+    let result = [];
+    let index = 0;
+    while (index < num) {
+      let random = Math.floor(Math.random() * arr.length);
+      if (result.indexOf(arr[random]) === -1) {
+        result.push(arr[random]);
+        index++;
+      }
+    }
+    return result;
+  };
+
+  const getSearchResult = (searchTarget) => {
+    const {title, city, keyword} = searchTarget;
+    let result = [];
+
+    switch (title) {
+      case '景點': {
+        result = filterData(scenicSpotData, city, keyword, 'ScenicSpotName');
+        break;
+      }
+      case '餐飲': {
+        result = filterData(restaurantData, city, keyword, 'RestaurantName');
+        break;
+      }
+      case '旅宿': {
+        result = filterData(hotelData, city, keyword, 'HotelName');
+        break;
+      }
+      case '活動': {
+        result = filterData(activityData, city, keyword, 'ActivityName');
+        break;
+      }
+      default:
+        break;
+    }
+
+    return result;
+  };
+
+  const filterData = (data, city, keyword, type) => {
+    return data.filter((item) => {
+      return (
+        item.Picture.PictureUrl1 !== undefined &&
+        (city === 'all' || item.City === city) &&
+        item[type].match(keyword)
+      );
+    });
+  };
+
 export const TravelContextProvider = ({children}) => {
   const [scenicSpotData, setScenicSpotData] = useState([]);
   const [restaurantData, setRestaurantData] = useState([]);
@@ -137,56 +188,7 @@ export const TravelContextProvider = ({children}) => {
     setSearchResult(searchResult);
   }, [searchTarget]);
 
-  const getRandomArray = (arr, num) => {
-    let result = [];
-    let index = 0;
-    while (index < num) {
-      let random = Math.floor(Math.random() * arr.length);
-      if (result.indexOf(arr[random]) === -1) {
-        result.push(arr[random]);
-        index++;
-      }
-    }
-    return result;
-  };
 
-  const getSearchResult = (searchTarget) => {
-    const {title, city, keyword} = searchTarget;
-    let result = [];
-
-    switch (title) {
-      case '景點': {
-        result = filterData(scenicSpotData, city, keyword, 'ScenicSpotName');
-        break;
-      }
-      case '餐飲': {
-        result = filterData(restaurantData, city, keyword, 'RestaurantName');
-        break;
-      }
-      case '旅宿': {
-        result = filterData(hotelData, city, keyword, 'HotelName');
-        break;
-      }
-      case '活動': {
-        result = filterData(activityData, city, keyword, 'ActivityName');
-        break;
-      }
-      default:
-        break;
-    }
-
-    return result;
-  };
-
-  const filterData = (data, city, keyword, type) => {
-    return data.filter((item) => {
-      return (
-        item.Picture.PictureUrl1 !== undefined &&
-        (city === 'all' || item.City === city) &&
-        item[type].match(keyword)
-      );
-    });
-  };
 
   return (
     <travelContext.Provider
