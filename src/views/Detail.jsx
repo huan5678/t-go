@@ -5,7 +5,7 @@ import Map from "../components/Map";
 import parse from "html-react-parser";
 
 const Detail = () => {
-  const { targetItem, targetClass, targetPicList } = useTravelContext();
+  const {targetItem, targetClass, targetPicList} = useTravelContext();
   let navigation = useNavigate();
 
   const [selectPic, setSelectPic] = useState({
@@ -23,38 +23,36 @@ const Detail = () => {
   useEffect(() => {
     if (targetItem === null) {
       setTimeout(() => {
-        navigation("/");
+        navigation('/');
       }, 1000);
     }
   }, [targetItem]);
 
   if (targetItem) {
     return (
-      <section className="container min-h-screen pt-20 pb-8">
-        <div className="flex justify-center items-center">
+      <section className="container min-h-screen pt-6 pb-8 md:pt-20">
+        <div className="flex items-center justify-center">
           <div className="space-y-4">
             <div className="space-y-4">
               {lightBox()}
-              <h1 className="text-3xl">
-                {targetClass === "推薦景點"
+              <h1 className="text-2xl md:text-3xl">
+                {targetClass === '推薦景點'
                   ? targetItem.ScenicSpotName
-                  : targetClass === "推薦餐廳"
+                  : targetClass === '推薦餐廳'
                   ? targetItem.RestaurantName
-                  : targetClass === "推薦住宿"
+                  : targetClass === '推薦住宿'
                   ? targetItem.HotelName
-                  : targetClass === "推薦活動"
+                  : targetClass === '推薦活動'
                   ? targetItem.ActivityName
                   : null}
               </h1>
-              <hr />
+              <hr className="hidden md:block" />
             </div>
             <p className="text-gray-dark">
-              {targetClass === "推薦景點"
-                ? targetItem.DescriptionDetail
-                : targetItem.Description}
+              {targetClass === '推薦景點' ? targetItem.DescriptionDetail : targetItem.Description}
             </p>
-            <div className="flex justify-between gap-4">
-              <ul className="p-4 rounded bg-gray-light divide-y divide-secondary-300 flex-auto">
+            <div className="flex flex-col gap-4 md:flex-row md:justify-between">
+              <ul className="flex-auto p-4 divide-y rounded bg-gray-light divide-secondary-300">
                 {targetItem.Address && (
                   <li className="py-2">
                     <span className="text-gray-dark">地址：</span>
@@ -74,27 +72,23 @@ const Detail = () => {
                 {targetItem.OpenTime && (
                   <li className="py-2">
                     <span className="text-gray-dark">營業|開放時間：</span>
-                    <span className="text-gray-dark">
-                      {targetItem.OpenTime}
-                    </span>
+                    <span className="text-gray-dark">{targetItem.OpenTime}</span>
                   </li>
                 )}
                 {targetItem.ParkingInfo && (
                   <li className="py-2">
                     <span className="text-gray-dark">停車資訊：</span>
-                    <span className="text-gray-dark">
-                      {targetItem.ParkingInfo}
-                    </span>
+                    <span className="text-gray-dark">{targetItem.ParkingInfo}</span>
                   </li>
                 )}
                 {targetItem.WebsiteUrl && (
                   <li className="py-2">
                     <a href={targetItem.WebsiteUrl} className="text-gray-dark">
-                      <span className="text-gray-dark flex items-center gap-2">
+                      <span className="flex items-center gap-2 text-gray-dark">
                         活動網站
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -108,9 +102,7 @@ const Detail = () => {
                 {targetItem.TicketInfo && (
                   <li className="py-2">
                     <span className="text-gray-dark">票價資訊：</span>
-                    <span className="text-gray-dark">
-                      {targetItem.TicketInfo}
-                    </span>
+                    <span className="text-gray-dark">{targetItem.TicketInfo}</span>
                   </li>
                 )}
                 {targetItem.TravelInfo && (
@@ -120,7 +112,7 @@ const Detail = () => {
                   </li>
                 )}
               </ul>
-              <div className="flex-auto bg-gray-light rounded-xl overflow-hidden flex justify-center items-center">
+              <div className="w-full h-64 overflow-hidden md:w-1/2 bg-gray-light rounded-xl">
                 <Map />
               </div>
             </div>
@@ -132,22 +124,22 @@ const Detail = () => {
 
   function lightBox() {
     return (
-      <div className="flex justify-between rounded-xl bg-gray-dark overflow-hidden max-h-96">
+      <div className="flex flex-col justify-between overflow-hidden md:flex-row rounded-xl bg-gray-dark max-h-96">
         <img
-          className="flex-auto min-w-[60vw] h-auto object-[50%_25%] object-cover rounded"
+          className="w-full md:w-2/3 h-auto object-cover rounded md:rounded-none md:object-none md:min-h-[30rem]"
           src={selectPic.url}
           alt={selectPic.description}
         />
         {targetPicList.length > 1 && (
-          <ul className="flex-auto flex flex-col justify-around items-center w-3/12">
+          <ul className="flex items-center justify-around flex-auto md:flex-col md:w-1/3">
             {targetPicList.map((item, index) => {
               return (
                 <li
                   key={index}
-                  className="flex-auto justify-center items-center cursor-pointer h-1/3"
+                  className="items-center justify-center flex-auto cursor-pointer h-1/3"
                 >
                   <img
-                    className="object-cover"
+                    className="object-cover w-full h-full md:rounded-none md:h-1/3"
                     src={item.url}
                     alt={item.description}
                     onClick={() => handlePicSelected(item)}
