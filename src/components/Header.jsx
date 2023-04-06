@@ -50,7 +50,7 @@ const Header = () => {
   };
 
 return (
-  <div className="fixed top-0 z-20 hidden w-full transition-all duration-300 bg-white shadow-sm md:block bg-opacity-90 backdrop-blur-sm">
+  <div className="fixed top-0 z-20 w-full transition-all duration-300 bg-white shadow-sm md:block bg-opacity-90 backdrop-blur-sm">
     <header className="container">
       <nav className="flex items-center justify-between">
         <Link to="/">
@@ -59,7 +59,7 @@ return (
             <h2 className="ml-2 text-primary">台灣GO嘍</h2>
           </div>
         </Link>
-        <ul className="flex items-center justify-between">
+        <ul className="items-center justify-between hidden  md:flex">
           {navList.map((item, index) => (
             <LinkItem key={index} to={item.to}>
               {item.icon}
